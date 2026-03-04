@@ -1,0 +1,68 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  background: #0e0e0e;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(64px, 12vw, 120px);
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  margin: 0;
+}
+
+.sub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 16px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btnPrimary {
+  padding: 12px 32px;
+  border-radius: 99px;
+  background: #fff;
+  color: #111;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.btnPrimary:hover { background: #e8e8e8; }
+
+.btnGhost {
+  padding: 12px 32px;
+  border-radius: 99px;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.7);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.btnGhost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }

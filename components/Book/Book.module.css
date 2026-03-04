@@ -1,0 +1,71 @@
+/* Book.module.css */
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 40px 16px;
+  background: #0e0e0e;
+  gap: 32px;
+}
+
+.book {
+  position: relative;
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 6px -1px rgba(0,0,0,0.5),
+    0 30px 80px -10px rgba(0,0,0,0.7);
+}
+
+.spine {
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 12px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.04) 40%,
+    rgba(0,0,0,0.04) 60%,
+    rgba(0,0,0,0.25)
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.4);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 17px;
+  letter-spacing: 0.05em;
+}
+
+.empty a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.dot:hover    { background: rgba(255,255,255,0.5); }
+.dotActive    { background: #fff; transform: scale(1.2); }
