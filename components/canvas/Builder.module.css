@@ -1,109 +1,91 @@
-/* Builder.module.css */
-/* Font import — add to your layout.jsx if not already present:
-   @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Cormorant+Garamond:wght@300;400&display=swap');
-*/
-
 .root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  min-height: 100dvh;
-  padding: 24px 16px 40px;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
   background: #0e0e0e;
-  color: #fff;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  letter-spacing: 0.03em;
 }
 
-/* ── Background picker ───────────────────────────────────────── */
+/* ── Background picker — top left ───────────────────────────── */
 
 .bgPicker {
+  position: fixed;
+  top: 20px;
+  left: 20px;
   display: flex;
-  gap: 10px;
-  padding: 6px 0;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
 }
 
-.bgSwatch {
-  width: 28px;
-  height: 28px;
+.swatch {
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   border: 2px solid transparent;
   cursor: pointer;
   transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
-.bgSwatch:hover  { transform: scale(1.15); }
+.swatch:hover      { transform: scale(1.2); }
+.swatchActive      { border-color: #fff; transform: scale(1.2); }
 
-.bgSwatchActive {
-  border-color: #fff;
-  transform: scale(1.15);
-}
-
-/* ── Canvas ──────────────────────────────────────────────────── */
-
-.canvasWrap {
-  position: relative;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow:
-    0 4px 6px -1px rgba(0,0,0,0.4),
-    0 20px 60px -10px rgba(0,0,0,0.6);
-}
-
-.loader {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #1a1a1a;
-  font-size: 13px;
-  color: #666;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* ── Filter strip ────────────────────────────────────────────── */
+/* ── Filter strip — bottom center, above toolbar ────────────── */
 
 .filterStrip {
+  position: fixed;
+  bottom: 88px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  gap: 8px;
-  animation: slideUp 0.2s ease;
+  gap: 6px;
+  z-index: 10;
+  animation: up 0.18s ease;
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes up {
+  from { opacity: 0; transform: translateX(-50%) translateY(6px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
 .filterPill {
   padding: 4px 14px;
   border-radius: 99px;
   border: 1px solid rgba(255,255,255,0.18);
-  background: transparent;
-  color: rgba(255,255,255,0.6);
-  font-family: inherit;
+  background: rgba(14,14,14,0.7);
+  backdrop-filter: blur(10px);
+  color: rgba(255,255,255,0.55);
+  font-family: var(--font-cormorant), Georgia, serif;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: capitalize;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.12s ease;
 }
 
-.filterPill:hover    { border-color: rgba(255,255,255,0.45); color: #fff; }
+.filterPill:hover    { border-color: rgba(255,255,255,0.4); color: #fff; }
 .filterPillActive    { background: #fff; color: #111; border-color: #fff; }
 
 /* ── Object options ──────────────────────────────────────────── */
 
-.objectOptions {
-  animation: slideUp 0.2s ease;
+.objectOpts {
+  position: fixed;
+  bottom: 88px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  animation: up 0.18s ease;
 }
 
 .toggle {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 8px 16px;
+  border-radius: 99px;
+  background: rgba(14,14,14,0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.12);
+  font-family: var(--font-cormorant), Georgia, serif;
   font-size: 13px;
   color: rgba(255,255,255,0.65);
   cursor: pointer;
@@ -112,69 +94,62 @@
 
 .toggle input { accent-color: #fff; cursor: pointer; }
 
-/* ── Toolbar ─────────────────────────────────────────────────── */
+/* ── Toolbar — bottom center ─────────────────────────────────── */
 
 .toolbar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 8px 16px;
-  background: rgba(255,255,255,0.06);
+  gap: 2px;
+  padding: 6px 10px;
+  background: rgba(20,20,20,0.85);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 99px;
-  backdrop-filter: blur(12px);
-}
-
-.toolBtn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: 99px;
-  border: none;
-  background: transparent;
-  color: rgba(255,255,255,0.7);
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 14px;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  backdrop-filter: blur(16px);
+  z-index: 10;
   white-space: nowrap;
 }
 
-.toolBtn:hover:not(:disabled) {
-  background: rgba(255,255,255,0.1);
-  color: #fff;
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 99px;
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.65);
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
 }
 
-.toolBtn:disabled { opacity: 0.35; cursor: not-allowed; }
+.btn:hover:not(:disabled) { background: rgba(255,255,255,0.1); color: #fff; }
+.btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
-.saveBtn {
+.shareBtn {
   background: #fff;
   color: #111;
   font-weight: 600;
 }
 
-.saveBtn:hover:not(:disabled) {
-  background: #e8e8e8;
-  color: #111;
-}
+.shareBtn:hover:not(:disabled) { background: #e8e8e8; color: #111; }
 
-.divider {
+.sep {
   width: 1px;
-  height: 20px;
-  background: rgba(255,255,255,0.12);
-  margin: 0 4px;
+  height: 18px;
+  background: rgba(255,255,255,0.1);
+  margin: 0 2px;
 }
 
-/* ── Utility ─────────────────────────────────────────────────── */
-
-.srOnly {
+.hidden {
   position: absolute;
   width: 1px; height: 1px;
-  padding: 0; margin: -1px;
   overflow: hidden;
   clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border: 0;
 }
